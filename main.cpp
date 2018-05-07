@@ -23,7 +23,7 @@ const double mue = 2.0; //set mue = 2.0, 取决于星体的物质组成，你可
 const double step = 100.0; //set step = 100.0m
 const double lam = h/(2.0*Pi*me*c);
 const double K = me*c*c/(lam*lam*lam);
-const double K_x = lam * exp(1.0/3.0 * log(3*Pi*Pi/(ma*mue)));
+const double K_x = lam * pow(3*Pi*Pi/(ma*mue), 1./3.);
 
 /*用不上的phi(x)，后面会用到它的导数
 double phi(double x){
@@ -44,7 +44,7 @@ double M_r(vector<double> rho_list){
 double K_r(vector<double> rho_list){
     double r = rho_list.size()*step;
     double rho = rho_list[rho_list.size()-1];
-    double x = K_x * ( rho > 0.? exp(1./3. * log(rho)) : pow(rho, 1./3.));
+    double x = K_x * ( rho > 0.? pow(rho, 1./3.) : -pow(-rho, 1./3.));
     double g_r = M_r(rho_list) * G /(r*r);
     return -9.*Pi*Pi*g_r*rho*rho*sqrt(1.+x*x)/(K*x*x*x*x*x);
 }
