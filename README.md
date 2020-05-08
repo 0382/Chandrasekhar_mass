@@ -8,3 +8,7 @@
 计算结果如下图
 
 ![计算结果](./result.jpg)
+
+-----
+
+顺便用julia练练手，julia还是挺好用的，运行速度很快，而且可以画图，一条龙服务。（虽然我用的还是PyPlot包作图。）[julia版本代码](./Chandrasekhar_mass.ipynb)

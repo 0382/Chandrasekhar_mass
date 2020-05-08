@@ -33,8 +33,6 @@ struct MR
 };
 
 MR calculate_one_rho(double rho_center){
-    double m_prev;
-    double rho_prev;
     double m = 0.;
     double r = 0.;
     double rho = rho_center;
@@ -42,13 +40,11 @@ MR calculate_one_rho(double rho_center){
     double drho;
     while(rho > 0.)
     {
-        m_prev = m;
-        rho_prev = rho;
         x = pow(rho / K_2, 1./3.);
         r += dr;
-        m = m_prev + 4. * pi * r * r * rho * dr;
+        m += 4. * pi * r * r * rho * dr;
         drho = -K * x * sqrt(1.+x*x) * m / (r * r) * dr;
-        rho = rho_prev + drho;
+        rho += drho;
     }
     return MR{m, r};
 }
